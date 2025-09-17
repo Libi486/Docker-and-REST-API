@@ -1,4 +1,4 @@
-# Docker-and-REST-API
+# REST-API
 
 You've learned a **lot** in a short time, Libin — here's a summary of everything you've accomplished and understood so far:
 
@@ -8,11 +8,16 @@ You've learned a **lot** in a short time, Libin — here's a summary of everythi
 
 ### 🐳 Docker Basics
 - What Docker is and how it works (images, containers, Dockerfile).
+- Install Docker:https://www.docker.com/products/docker-desktop/?_gl=1*1lbhvfl*_gcl_au*MTM1NjY1ODM1Mi4xNzU4MTAxMDE1*_ga*MzUxMTMwMjc5LjE3NTgxMDAyODA.*_ga_XJWPQMJYHQ*czE3NTgxMDAyODAkbzEkZzEkdDE3NTgxMDE1OTkkajQ2JGwwJGgw
+- Docker Link : https://app.docker.com/accounts/libinbd
 - How to build and run a containerized Python app.
+- Build: C:\Users\Libin Daniel\my-python-app>docker build -t flask-app .
+- RUN: docker run -p 5000:5000 flask-app
 - How to expose ports and interact with your app via `localhost`.
 
 ### 🐍 Python + Flask
 - How to create a simple Flask app.
+Flask is a lightweight web framework written in Python. It helps you build web applications and APIs quickly and easily.
 - How to serve content via HTTP routes.
 - How to run Flask inside Docker.
 
