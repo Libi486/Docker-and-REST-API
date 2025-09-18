@@ -1,0 +1,141 @@
+
+What does Curl -X Post related Thing means
+
+curl -X POST http://localhost:9773/servicemanagement/services/370177fb-e251-545e-8ad2-b68fd9eb0f0d \
+-H "Content-Type: application/json" \
+-d "{\"disableReasons\": [[\"notLicensed\"]]}"
+
+This likely tells the backend:
+
+"Disable this service because it's not licensed."
+
+
+"curl -H "Content-Type: application/json" -X POST http://localhost:9773/privacysetup/privacyGroups/b42746c4-3bf4-5f52-996c-043c0a5bcdd1 -d {\"personalGps\":false,\"personalUser\":false,\"pseudonymousGps\":false,\"personalVehicle\":false,\"anonymousDataNoGPS\":false,}
+
+## 🔍 Breakdown of Each Part
+
+### ✅ `curl`
+Command-line tool to send HTTP requests.
+
+### ✅ `-H "Content-Type: application/json"`
+Sets the request header to tell the server you're sending JSON data.
+
+### ✅ `-X POST`
+Specifies the HTTP method — in this case, `POST`.
+
+### ✅ `http://localhost:9773/...`
+The URL you're sending the request to — a local service running on port `9773`.
+
+### ✅ `-d {...}`
+This is the **data payload** you're sending in the request body.
+
+---
+
+## ❌ Issues in the Command
+
+1. **Malformed JSON**:
+   - The payload ends with a comma `,` before the closing brace `}`, which is invalid.
+   - The escaping of quotes is incorrect for most shells.
+
+---
+
+## ✅ Corrected Version
+
+Here’s a properly formatted version for **Command Prompt (Windows)**:
+
+```cmd
+curl -X POST http://localhost:9773/privacysetup/privacyGroups/b42746c4-3bf4-5f52-996c-043c0a5bcdd1 -H "Content-Type: application/json" -d "{\"personalGps\":false,\"personalUser\":false,\"pseudonymousGps\":false,\"personalVehicle\":false,\"anonymousDataNoGPS\":false}"
+```
+
+> Note: `^` is used in Windows CMD to split long commands across lines. You can remove it if you're typing everything in one line.
+
+---
+
+## 🧪 What This Does
+
+You're sending a POST request to configure privacy settings for a group identified by:
+
+```
+b42746c4-3bf4-5f52-996c-043c0a5bcdd1
+```
+
+With the following JSON payload:
+
+```json
+{
+  "personalGps": false,
+  "personalUser": false,
+  "pseudonymousGps": false,
+  "personalVehicle": false,
+  "anonymousDataNoGPS": false
+}
+```
+
+This likely disables various types of data collection or tracking for that privacy group.
+
+
+
+Sample
+POST is Used When Entering a data in Dictionary or List for the first time
+C:\Users\Libin Daniel\my-python-app>curl -X POST http://localhost:5000/books -H "Content-Type: application/json" -d "{\"id\":3,\"title\":\"New Book\",\"author\":\"Alice\"}"
+O/P: {"author":"Alice","id":3,"title":"New Book"}
+
+PUT is Used When Entering a data in Dictionary or List is to be updated  
+Note: POST doest work once PUT is used. 
+C:\Users\Libin Daniel\my-python-app>curl -X PUT http://localhost:5000/books/3 -H "Content-Type: application/json" -d "{\"title\":\"Book Out of Stock\",\"author\":\"Alice Updated\"}"
+O/P: {"author":"Alice Updated","id":3,"title":"Book Out of Stock"}
+
+GET is used to display the element of the dictionary to which it is pointed
+C:\Users\Libin Daniel\my-python-app>curl -X GET http://localhost:5000/books/3
+O/P: {"author":"Alice Updated","id":3,"title":"Updated Book"}
+
+DELETE is used to detele the element
+C:\Users\Libin Daniel\my-python-app>curl -X DELETE http://localhost:5000/books/3
+
+So if you try to GET the element which you have deleted you will get 
+C:\Users\Libin Daniel\my-python-app>curl -X GET http://localhost:5000/books/3
+Book not found
+
+Similarly if you try to create a new element using PUT again it shows 
+Note we dont have a 6th element in our dictionary but it tried to use "PUT" instead of "POST" to create a new element and this is what I got.
+C:\Users\Libin Daniel\my-python-app>curl -X PUT http://localhost:5000/books/6 -H "Content-Type: application/json" -d "{\"title\":\"Book Out of Stock\",\"author\":\"Alice Updated\"}"
+Book not found
+
+
+🔍 Breakdown:
+
+C:\Users\Libin Daniel\my-python-app>curl -X POST http://localhost:5000/books -H "Content-Type: application/json" -d "{\"id\":3,\"title\":\"New Book\",\"author\":\"Alice\"}"
+1. curl
+This is a command-line tool used to send HTTP requests to a server.
+
+2. -X POST
+This tells curl to use the POST method — typically used to create new data on the server.
+
+3. http://localhost:5000/books
+This is the URL of your Flask API endpoint. You're sending the request to the /books route on your local machine (port 5000).
+
+4. -H "Content-Type: application/json"
+This sets the HTTP header to tell the server:
+
+5. -d "{\"id\":3,\"title\":\"New Book\",\"author\":\"Alice\"}"
+This is the data payload you're sending in the request body. It's a JSON object with:
+
+JSON
+{
+  "id": 3,
+  "title": "New Book",
+  "author": "Alice"
+}
+
+The backslashes (\) are used to escape the double quotes so the shell interprets them correctly.
+
+🧪 What Happens When You Run It
+Your Flask app receives:
+
+A POST request at /books
+With JSON data for a new book
+Then it:
+
+Parses the JSON
+Adds the book to the books list
+Returns the newly added book as a response
