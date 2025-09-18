@@ -8,6 +8,7 @@ books = [
     {"id": 2, "title": "Python Essentials", "author": "Jane Doe"}
 ]
 
+
 @app.route('/', methods=['GET'])
 def home():
     return "Hello from Flask in Docker!"
@@ -19,7 +20,10 @@ def get_books():
 @app.route('/books/<int:book_id>', methods=['GET'])
 def get_book(book_id):
     book = next((b for b in books if b["id"] == book_id), None)
-    return jsonify(book) if book else ("Book not found", 404)
+    if not book:
+        return jsonify({"error": "Book not found"}), 404
+    return jsonify(book)
+
 
 @app.route('/books', methods=['POST'])
 def add_book():
@@ -44,3 +48,4 @@ def delete_book(book_id):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
