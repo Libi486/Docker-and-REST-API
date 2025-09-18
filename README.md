@@ -13,7 +13,7 @@ You've learned a **lot** in a short time, Libin — here's a summary of everythi
 - How to build and run a containerized Python app.
 - Build: C:\Users\Libin Daniel\my-python-app>docker build -t flask-app .
 - RUN: docker run -p 5000:5000 flask-app
-- If ERROR-failed: port is already allocated the use-> docker run -p 5001:5000 my-flask-app      ie just edit %000 to 5001 or 5002 etc
+- If ERROR-failed: port is already allocated the use-> docker run -p 5001:5000 my-flask-app      ie just edit 5000 to 5001 or 5002 etc
 - How to expose ports and interact with your app via `localhost`.
 
 ### 🐍 Python + Flask
